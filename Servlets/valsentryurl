@@ -1,0 +1,66 @@
+package com.java;
+
+import jakarta.servlet.ServletException;
+import java.io.PrintWriter;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class helloworld
+ */
+@WebServlet("/helloworld")
+public class helloworld extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public helloworld() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	
+		//1.always set these first
+		
+		response.setContentType("text/html");
+		PrintWriter pw = response.getWriter();
+		
+		String data = request.getParameter("vals");
+		
+		pw.println("<html><head><title>Array results</title></head><body>");
+		if(data != null && !data.isEmpty()) {
+			try {
+				String[] items = data.split(",");
+				int [] myArray = new int[items.length];
+				
+				pw.println("<h2>Your array Elements: </h2><ul>");
+				
+				for(int i=0;i<items.length;i++) {
+					myArray[i]=Integer.parseInt(items[i].trim());
+					pw.println("<li>Value at index "+i+":**"+myArray[i]+"**</li>");
+				}
+				pw.println("</ul>");
+			}catch (NumberFormatException e) {
+				pw.println("<p style='color:red;'>Error: please only use number</p>");
+			}
+		}else {
+				pw.println("<h2>No data provided</h2>");
+				pw.println("<p>Try adding <code>?vals=10,20.30</code> to the url.</p>");
+			}
+			pw.println("</body></html>");
+		}
+	}
+
+
+  http://localhost:8080/Servlets/helloworld?vals=10,20,30,40,50
+
+
