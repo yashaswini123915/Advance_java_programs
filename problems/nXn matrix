@@ -1,0 +1,28 @@
+package interview;
+import java.util.*;
+
+
+//7. Write a program in Java to input an NxN matrix and display it row-wise and column-wise.
+
+public class Test1 {
+	public static void main(String args[]) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		System.out.println("enter n value:");
+		int n= scn.nextInt();
+		
+		int myArray[][]= new int [n][n];
+		 for(int i=0;i<n;i++) {
+			 for(int j=0;j<n;j++) {
+				 myArray[i][j]= scn.nextInt();	
+			}
+		 }
+		 
+		 for(int [] row:myArray) {
+			 for(int x:row) {
+				 System.out.print(x+" ");
+			 }
+			 System.out.println("\t");
+			 
+		 }
+	}
+}
