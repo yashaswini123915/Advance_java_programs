@@ -1,0 +1,49 @@
+package com.java;
+
+import jakarta.servlet.ServletException;
+import java.io.PrintWriter;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class helloworld
+ */
+@WebServlet("/helloworld")
+public class helloworld extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public helloworld() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		response.setContentType("text/html");
+		PrintWriter pw = response.getWriter();
+		
+		String data = request.getParameter("name");
+		if(data != null&& !data.isEmpty()) {
+			pw.println("<html><head><title>enter your name in url</title></head>");
+			try {
+				pw.println("<body>");
+				pw.println("<h1> my name is "+data+"</h1>");
+			}catch(Exception e) {
+				pw.print(e);
+			}
+		}
+		pw.close();
+	}
+	}
+
+
