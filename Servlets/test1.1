@@ -1,0 +1,65 @@
+package com.java;
+
+import jakarta.servlet.ServletException;
+import java.io.PrintWriter;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class helloworld
+ */
+@WebServlet("/helloworld")
+public class helloworld extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public helloworld() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		
+		String data1 = request.getParameter("val1");
+		System.out.println("The value of data is: " + data1);
+		
+		String data2 = request.getParameter("val2");
+		System.out.println("The value of data is: " + data2);
+		
+		if(data1 !=null && data2 != null) {
+			try {
+			int a= Integer.parseInt(data1);
+			int b= Integer.parseInt(data2);
+			
+			pw.println("<h3>Before Swapping: a = " + a + ", b = " + b + "</h3>");
+			
+			
+			// 2. Swapping Logic using a temporary variable
+	        int temp = a;
+	        a = b;
+	        b = temp;
+	        
+	        pw.println("<h3>After Swapping: a = " + a + ", b = " + b + "</h3>");
+	    	
+		}catch(NumberFormatException e) {
+			pw.println("<p style='color:red;'>Please enter valid numeric values!</p>");
+		}
+		}
+		pw.close();
+		
+			}
+	}
+
+
