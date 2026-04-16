@@ -1,0 +1,43 @@
+package interview;
+import java.util.*;
+
+
+
+
+public class Test1 {
+	public static void main(String args[]) throws Exception {
+		Scanner scn=new Scanner(System.in);
+		System.out.println("enter your n value");
+		int n= scn.nextInt();
+		int [] arr = new int[n];
+		
+		//input the array
+		for(int i=0;i<n;i++) {
+			arr[i] = scn.nextInt();
+		}
+		System.out.println("enter your target value: ");
+		int target = scn.nextInt();
+		int fIndex=-1, lIndex =-1;
+		boolean found = false;
+		
+		
+		for(int i=0;i<n;i++) {
+			if(arr[i]== target) {
+				if(!found) {
+					fIndex = i;
+					lIndex = i;
+					found = true;
+					
+				}else {
+					lIndex = i;
+				}
+			}
+		}
+		if(found==false) {
+			System.out.println("the element does not exist in the array");
+		}else {
+			System.out.println("first index= "+fIndex+"Last Index= "+lIndex);
+		}
+	    	
+	}
+}
