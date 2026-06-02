@@ -1,3 +1,5 @@
+
+
 package MethodandConstructor;
 
 public class Checkvowels {
