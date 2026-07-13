@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+    </head>
+    <body>
+        <h2>login Form</h2>
+        <label>Username</label><br>
+        <input type="text" id="username"><br><br>
+        <label>Password</label><br>
+        <input type="password" id="password"><br><br>
+        <button onClick="login()">Login</button>
+        <button onClick="clearData()">Clear</button>
+        <h3 id="msg"></h3>
+        <script>
+            function login(){
+            let uname=document.getElementById("username").value;
+            let pass=document.getElementById("password").value;
+            fetch("/login?username="+uname+"&password="+pass)
+            .then(res=>res.text())
+            .then(data=>{
+                document.getElementById("msg").innerHTML=data;
+            });
+            }
+            function clearData()
+            {
+                document.getElementById("username").value="";
+             document.getElementById("password").value="";
+          document.getElementById("msg").value="";
+        }
+        </script>
+    
+    </body>
+</html>
